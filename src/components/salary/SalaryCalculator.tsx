@@ -49,7 +49,7 @@ const SalaryCalculator: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <Card className="rounded-[2.5rem] border-[#1E293B]/5 shadow-sm">
+          <Card className="rounded-[2.5rem] border-text/5 shadow-sm">
             <CardContent className="p-10">
               <div className="flex items-center gap-3 mb-8">
                 <motion.div
@@ -57,11 +57,11 @@ const SalaryCalculator: React.FC = () => {
                   transition={{ duration: 2, repeat: Infinity }}
                   className="w-2 h-2 bg-blue-500 rounded-full shadow-lg shadow-blue-500/50"
                 />
-                <h4 className="text-sm font-black text-[#1E293B]/30 uppercase tracking-[0.25em]">
+                <h4 className="text-sm font-black text-text/30 uppercase tracking-[0.25em]">
                   정확도 안내 및 레퍼런스
                 </h4>
               </div>
-              <div className="grid md:grid-cols-2 gap-10 text-base text-[#1E293B]/50 leading-relaxed font-semibold">
+              <div className="grid md:grid-cols-2 gap-10 text-base text-text/50 leading-relaxed font-semibold">
                 <p>
                   인포마우스의 모든 데이터와 계산 도구는 국가법령정보센터 및 유관
                   기관의 최신 고시 사항을 정기적으로 모니터링하여 정밀하게

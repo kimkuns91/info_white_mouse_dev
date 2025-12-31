@@ -51,7 +51,7 @@ const ResultDisplay: React.FC<Props> = ({ data }) => {
             {/* Left: Summary */}
             <div className="md:col-span-3 space-y-10">
               <div>
-                <span className="text-base font-bold text-[#1E293B]/50 uppercase tracking-widest block mb-3">
+                <span className="text-base font-bold text-text/50 uppercase tracking-widest block mb-3">
                   월 예상 실수령액
                 </span>
                 <motion.h3
@@ -59,12 +59,12 @@ const ResultDisplay: React.FC<Props> = ({ data }) => {
                   initial={{ scale: 1.02 }}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="text-5xl md:text-6xl font-black text-[#1E293B] tracking-tight flex items-baseline gap-2"
+                  className="text-5xl md:text-6xl font-black text-text tracking-tight flex items-baseline gap-2"
                 >
                   <AnimatedNumber
                     value={formatCurrency(data.netPay).replace("₩", "")}
                   />
-                  <span className="text-2xl font-bold text-[#1E293B]/60">원</span>
+                  <span className="text-2xl font-bold text-text/60">원</span>
                 </motion.h3>
               </div>
 
@@ -72,9 +72,9 @@ const ResultDisplay: React.FC<Props> = ({ data }) => {
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                  className="bg-[#F0EFEC] p-6 rounded-2xl border border-[#1E293B]/5"
+                  className="bg-surface p-6 rounded-2xl border border-text/5"
                 >
-                  <span className="text-sm font-black text-[#1E293B]/40 uppercase tracking-wider block mb-2">
+                  <span className="text-sm font-black text-text/40 uppercase tracking-wider block mb-2">
                     공제액 합계
                   </span>
                   <p className="text-2xl font-black text-red-500">
@@ -84,7 +84,7 @@ const ResultDisplay: React.FC<Props> = ({ data }) => {
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                  className="bg-[#1E293B] p-6 rounded-2xl shadow-xl shadow-[#1E293B]/20"
+                  className="bg-text p-6 rounded-2xl shadow-xl shadow-text/20"
                 >
                   <span className="text-sm font-black text-white/40 uppercase tracking-wider block mb-2">
                     총 공제율
@@ -108,10 +108,10 @@ const ResultDisplay: React.FC<Props> = ({ data }) => {
               >
                 {/* Center Label */}
                 <div className="absolute inset-0 flex items-center justify-center flex-col pointer-events-none z-0">
-                  <span className="text-[10px] font-black text-[#1E293B]/20 uppercase tracking-[0.3em] mb-1">
+                  <span className="text-[10px] font-black text-text/20 uppercase tracking-[0.3em] mb-1">
                     RATIO
                   </span>
-                  <span className="text-sm font-black text-[#1E293B]">
+                  <span className="text-sm font-black text-text">
                     실수령 비중
                   </span>
                 </div>
@@ -164,14 +164,14 @@ const ResultDisplay: React.FC<Props> = ({ data }) => {
             className="mt-16 space-y-6"
           >
             <div className="flex items-center gap-4 mb-8">
-              <h4 className="text-sm font-black text-[#1E293B]/30 uppercase tracking-[0.3em] whitespace-nowrap">
+              <h4 className="text-sm font-black text-text/30 uppercase tracking-[0.3em] whitespace-nowrap">
                 공제 상세 내역
               </h4>
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: "100%" }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="h-[1px] bg-[#F0EFEC]"
+                className="h-[1px] bg-surface"
               />
             </div>
             <div className="grid md:grid-cols-2 gap-x-16 gap-y-2">
@@ -183,7 +183,7 @@ const ResultDisplay: React.FC<Props> = ({ data }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className="md:col-span-2 my-2 h-[1px] bg-[#F0EFEC]"
+                className="md:col-span-2 my-2 h-[1px] bg-surface"
               />
               <DetailRow label="근로소득세" value={data.incomeTax} isBold delay={0.35} />
               <DetailRow label="지방소득세" value={data.localIncomeTax} isBold delay={0.4} />
@@ -212,7 +212,7 @@ const DetailRow = ({
     transition={{ duration: 0.3, delay }}
     whileHover={{ x: 4 }}
     className={`flex justify-between items-center py-3 ${
-      isBold ? "text-[#1E293B]" : "text-[#1E293B]/70"
+      isBold ? "text-text" : "text-text/70"
     }`}
   >
     <span className={`text-base font-bold ${isBold ? "text-lg" : ""}`}>
@@ -221,7 +221,7 @@ const DetailRow = ({
     <span
       className={`text-base font-black ${
         isBold
-          ? "text-lg underline decoration-[#F0EFEC] decoration-4 underline-offset-4"
+          ? "text-lg underline decoration-surface decoration-4 underline-offset-4"
           : ""
       }`}
     >

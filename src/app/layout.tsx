@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
 import { generatePageMetadata } from "@/lib/metadata";
+import { LayoutProvider } from "@/components/providers/LayoutProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,6 +24,12 @@ export const metadata: Metadata = {
       { url: "/icon.svg", type: "image/svg+xml" },
     ],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
+  verification: {
+    google: "KNL-4F54E2WzV5E9EGePuMfMv-627Xad8ocgvfNhwAU",
+    other: {
+      "naver-site-verification": "ed5fb5b739d7edd60a5d6f68d17c8dccb0a29390",
+    },
   },
 };
 
@@ -45,9 +52,9 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#F0EFEC]`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-surface`}
       >
-        {children}
+        <LayoutProvider>{children}</LayoutProvider>
       </body>
     </html>
   );

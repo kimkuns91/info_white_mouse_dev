@@ -22,7 +22,7 @@ const AIAdvisor: React.FC<Props> = ({ breakdown }) => {
   };
 
   return (
-    <Card className="bg-[#1E293B] rounded-[2.5rem] shadow-2xl text-white overflow-hidden relative group border-0">
+    <Card className="bg-text rounded-[2.5rem] shadow-2xl text-white overflow-hidden relative group border-0">
       {/* Decorative gradient */}
       <div className="absolute -top-32 -right-32 w-64 h-64 bg-blue-500/20 blur-[100px] rounded-full group-hover:bg-blue-500/30 transition-all duration-1000"></div>
 
@@ -43,7 +43,7 @@ const AIAdvisor: React.FC<Props> = ({ breakdown }) => {
             </p>
             <Button
               onClick={handleGetAdvice}
-              className="w-full py-5 h-auto bg-[#F0EFEC] text-[#1E293B] font-black rounded-2xl hover:bg-white transition-all shadow-xl active:scale-95 text-sm uppercase tracking-widest"
+              className="w-full py-5 h-auto bg-surface text-text font-black rounded-2xl hover:bg-white transition-all shadow-xl active:scale-95 text-sm uppercase tracking-widest"
             >
               분석 리포트 생성하기
             </Button>

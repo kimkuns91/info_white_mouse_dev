@@ -69,19 +69,19 @@ const CalculatorInput: React.FC<Props> = ({ input, onChange }) => {
 
   return (
     <Card className="rounded-[2.5rem] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.05)] border-white">
-      <CardHeader className="border-b border-[#F0EFEC] pb-8">
+      <CardHeader className="border-b border-surface pb-8">
         <div className="flex justify-between items-center">
-          <CardTitle className="text-xl font-black text-[#1E293B]">
+          <CardTitle className="text-xl font-black text-text">
             계산기 설정
           </CardTitle>
-          <div className="flex bg-[#F0EFEC] p-1.5 rounded-2xl">
+          <div className="flex bg-surface p-1.5 rounded-2xl">
             <Button
               variant="ghost"
               onClick={() => onChange({ ...input, isMonthly: true })}
               className={`px-6 py-2.5 text-sm font-black rounded-xl transition-all cursor-pointer ${
                 input.isMonthly
-                  ? "bg-white text-[#1E293B] shadow-md hover:bg-white"
-                  : "text-[#1E293B]/30 hover:text-[#1E293B] hover:bg-transparent"
+                  ? "bg-white text-text shadow-md hover:bg-white"
+                  : "text-text/30 hover:text-text hover:bg-transparent"
               }`}
             >
               월급
@@ -91,8 +91,8 @@ const CalculatorInput: React.FC<Props> = ({ input, onChange }) => {
               onClick={() => onChange({ ...input, isMonthly: false })}
               className={`px-6 py-2.5 text-sm font-black rounded-xl transition-all cursor-pointer ${
                 !input.isMonthly
-                  ? "bg-white text-[#1E293B] shadow-md hover:bg-white"
-                  : "text-[#1E293B]/30 hover:text-[#1E293B] hover:bg-transparent"
+                  ? "bg-white text-text shadow-md hover:bg-white"
+                  : "text-text/30 hover:text-text hover:bg-transparent"
               }`}
             >
               연봉
@@ -154,7 +154,7 @@ const CurrencyInputGroup = ({
   placeholder,
 }: CurrencyInputGroupProps) => (
   <div className="group">
-    <Label className="block text-base font-black text-[#1E293B]/60 mb-3 px-1">
+    <Label className="block text-base font-black text-text/60 mb-3 px-1">
       {label}
     </Label>
     <div className="relative">
@@ -165,19 +165,19 @@ const CurrencyInputGroup = ({
         value={value > 0 ? formatNumber(value) : ""}
         onChange={(e) => onChange(name, e.target.value)}
         placeholder={placeholder}
-        className="w-full bg-[#F0EFEC]/60 border-2 border-transparent rounded-2xl p-5 h-auto text-xl font-black text-[#1E293B] focus:bg-white focus:border-[#1E293B]/10 outline-none transition-all placeholder-[#1E293B]/20 cursor-text"
+        className="w-full bg-surface/60 border-2 border-transparent rounded-2xl p-5 h-auto text-xl font-black text-text focus:bg-white focus:border-text/10 outline-none transition-all placeholder-text/20 cursor-text"
       />
-      <span className="absolute right-6 top-1/2 -translate-y-1/2 text-base font-bold text-[#1E293B]/30">
+      <span className="absolute right-6 top-1/2 -translate-y-1/2 text-base font-bold text-text/30">
         원
       </span>
     </div>
     {value > 0 && (
-      <p className="mt-2 px-1 text-sm text-[#1E293B]/50 font-bold">
+      <p className="mt-2 px-1 text-sm text-text/50 font-bold">
         {formatKoreanCurrency(value)}
       </p>
     )}
     {help && (
-      <p className="mt-2 px-1 text-sm text-[#1E293B]/40 font-medium leading-relaxed">
+      <p className="mt-2 px-1 text-sm text-text/40 font-medium leading-relaxed">
         {help}
       </p>
     )}
@@ -204,7 +204,7 @@ const InputGroup = ({
   placeholder,
 }: InputGroupProps) => (
   <div className="group">
-    <Label className="block text-base font-black text-[#1E293B]/60 mb-3 px-1">
+    <Label className="block text-base font-black text-text/60 mb-3 px-1">
       {label}
     </Label>
     <div className="relative">
@@ -215,14 +215,14 @@ const InputGroup = ({
         value={value > 0 ? value.toString() : ""}
         onChange={onChange}
         placeholder={placeholder}
-        className="w-full bg-[#F0EFEC]/60 border-2 border-transparent rounded-2xl p-5 h-auto text-xl font-black text-[#1E293B] focus:bg-white focus:border-[#1E293B]/10 outline-none transition-all placeholder-[#1E293B]/20 cursor-text"
+        className="w-full bg-surface/60 border-2 border-transparent rounded-2xl p-5 h-auto text-xl font-black text-text focus:bg-white focus:border-text/10 outline-none transition-all placeholder-text/20 cursor-text"
       />
-      <span className="absolute right-6 top-1/2 -translate-y-1/2 text-base font-bold text-[#1E293B]/30">
+      <span className="absolute right-6 top-1/2 -translate-y-1/2 text-base font-bold text-text/30">
         {suffix}
       </span>
     </div>
     {help && (
-      <p className="mt-3 px-1 text-sm text-[#1E293B]/40 font-medium leading-relaxed">
+      <p className="mt-3 px-1 text-sm text-text/40 font-medium leading-relaxed">
         {help}
       </p>
     )}

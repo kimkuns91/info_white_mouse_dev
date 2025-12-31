@@ -1,5 +1,10 @@
 # Claude Code 프로젝트 규칙
 
+## 패키지 매니저
+
+- **yarn** 사용 (npm 대신 yarn 명령어 사용)
+- 예시: `yarn install`, `yarn add`, `yarn dev`
+
 ## Git 커밋 컨벤션
 
 ### 커밋 메시지 형식

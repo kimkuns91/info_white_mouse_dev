@@ -1,7 +1,5 @@
 import { Metadata } from "next";
 import SalaryCalculator from "@/components/salary/SalaryCalculator";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
 import { Container } from "@/components/layout/Container";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { generateToolMetadata } from "@/lib/metadata";
@@ -25,23 +23,15 @@ export default function SalaryPage() {
         ]}
       />
 
-      <div className="min-h-screen selection:bg-[#1E293B] selection:text-white">
-        <Header />
+      <PageHeader
+        badge="Calculator Tools"
+        title="연봉 계산기"
+        description="4대보험과 세금을 반영한 정확한 월 실수령액을 계산합니다."
+      />
 
-        <main className="pt-24 pb-20">
-          <PageHeader
-            badge="Calculator Tools"
-            title="연봉 계산기"
-            description="4대보험과 세금을 반영한 정확한 월 실수령액을 계산합니다."
-          />
-
-          <Container>
-            <SalaryCalculator />
-          </Container>
-        </main>
-
-        <Footer />
-      </div>
+      <Container>
+        <SalaryCalculator />
+      </Container>
     </>
   );
 }
