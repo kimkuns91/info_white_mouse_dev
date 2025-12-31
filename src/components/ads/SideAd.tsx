@@ -36,7 +36,7 @@ const adConfig = {
 
 // 레이아웃 설정
 const HEADER_HEIGHT = 80; // 헤더 높이 (px)
-const FOOTER_OFFSET = 200; // 푸터 도달 전 사라지는 거리 (px)
+const FOOTER_OFFSET = 300; // 푸터 도달 전 사라지는 거리 (px)
 
 export function SideAd({ position }: SideAdProps) {
   const [isVisible, setIsVisible] = useState(false);
@@ -72,13 +72,13 @@ export function SideAd({ position }: SideAdProps) {
     return (
       <div
         className={`hidden xl:block fixed top-1/2 -translate-y-1/2 z-40 transition-all duration-300 ${
-          position === "left" ? "left-4" : "right-4"
+          position === "left" ? "left-8" : "right-8"
         } ${
           isVisible
             ? "opacity-100 translate-x-0"
             : position === "left"
-            ? "opacity-0 -translate-x-4"
-            : "opacity-0 translate-x-4"
+            ? "opacity-0 -translate-x-8"
+            : "opacity-0 translate-x-8"
         }`}
         style={{ pointerEvents: isVisible ? "auto" : "none" }}
       >
@@ -88,12 +88,12 @@ export function SideAd({ position }: SideAdProps) {
           rel="noopener noreferrer"
           className="block"
         >
-          <div className="w-[120px] bg-white rounded-2xl shadow-lg border border-text/5 overflow-hidden hover:shadow-xl transition-shadow">
+          <div className="w-[160px] bg-white rounded-2xl shadow-lg border border-text/5 overflow-hidden hover:shadow-xl transition-shadow">
             {hasImage ? (
               <Image
                 src={currentAd.imageUrl}
                 alt={currentAd.alt}
-                width={120}
+                width={160}
                 height={600}
                 className="w-full h-auto"
                 onError={() => setHasImage(false)}
