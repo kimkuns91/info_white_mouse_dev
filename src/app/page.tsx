@@ -1,65 +1,200 @@
-import Image from "next/image";
+"use client";
+
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { Container } from "@/components/layout/Container";
+import { tools } from "@/config/tools";
+import { toolIcons, ChevronRightIcon } from "@/components/icons";
+import { WebSiteJsonLd, OrganizationJsonLd } from "@/components/seo/JsonLd";
+import { siteConfig } from "@/config/site";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut" as const,
+    },
+  },
+};
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <>
+      <WebSiteJsonLd />
+      <OrganizationJsonLd />
+
+      <div className="min-h-screen selection:bg-[#1E293B] selection:text-white">
+        <Header />
+
+        <main className="pt-24">
+          <Container className="mt-16 md:mt-24 pb-24">
+            {/* Hero Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="mb-16"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="flex items-center gap-4 mb-6"
+              >
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: 48 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="h-[2px] bg-[#1E293B]/20"
+                />
+                <span className="text-sm font-black text-[#1E293B]/40 uppercase tracking-[0.4em]">
+                  Knowledge & Hub
+                </span>
+              </motion.div>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-5xl md:text-6xl font-black text-[#1E293B] leading-[1.1] max-w-4xl tracking-tight"
+              >
+                {siteConfig.description.split(",")[0]},
+                <br />
+                {siteConfig.description.split(",")[1]}
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="mt-8 text-[#1E293B]/60 text-xl md:text-2xl max-w-2xl font-medium leading-relaxed"
+              >
+                방대한 데이터와 최신 규정을 분석하여 일상에 꼭 필요한 지식을{" "}
+                <br className="hidden md:block" /> 가장 직관적인 형태로 전달합니다.
+              </motion.p>
+            </motion.div>
+
+            {/* Tools Grid */}
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              className="grid md:grid-cols-2 gap-6"
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+              {tools.map((tool) => {
+                const IconComponent = toolIcons[tool.icon];
+                const isActive = tool.status === "active";
+
+                return (
+                  <motion.div key={tool.id} variants={itemVariants}>
+                    <Link href={isActive ? tool.href : "#"}>
+                      <motion.div
+                        whileHover={isActive ? { y: -4, scale: 1.01 } : {}}
+                        whileTap={isActive ? { scale: 0.98 } : {}}
+                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                      >
+                        <Card
+                          className={`rounded-[2rem] border-[#1E293B]/5 shadow-sm hover:shadow-xl transition-shadow duration-300 group ${
+                            !isActive ? "opacity-50 cursor-not-allowed" : ""
+                          }`}
+                        >
+                          <CardContent className="p-8">
+                            <div className="flex items-start gap-6">
+                              <motion.div
+                                whileHover={isActive ? { rotate: [0, -10, 10, 0] } : {}}
+                                transition={{ duration: 0.5 }}
+                                className={`p-4 rounded-2xl ${
+                                  isActive
+                                    ? "bg-[#1E293B] text-white"
+                                    : "bg-[#F0EFEC] text-[#1E293B]/40"
+                                }`}
+                              >
+                                <IconComponent className="w-8 h-8" />
+                              </motion.div>
+                              <div className="flex-1">
+                                <div className="flex items-center gap-3 mb-2">
+                                  <h3 className="text-xl font-black text-[#1E293B]">
+                                    {tool.title}
+                                  </h3>
+                                  {!isActive && (
+                                    <span className="text-[10px] font-black text-[#1E293B]/30 uppercase tracking-widest bg-[#F0EFEC] px-3 py-1 rounded-full">
+                                      Coming Soon
+                                    </span>
+                                  )}
+                                </div>
+                                <p className="text-[#1E293B]/50 font-medium">
+                                  {tool.description}
+                                </p>
+                              </div>
+                              {isActive && (
+                                <motion.div
+                                  initial={{ x: 0 }}
+                                  whileHover={{ x: 4 }}
+                                >
+                                  <ChevronRightIcon className="w-6 h-6 text-[#1E293B]/20 group-hover:text-[#1E293B] transition-colors" />
+                                </motion.div>
+                              )}
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </motion.div>
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+
+            {/* Info Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <Card className="mt-12 rounded-[2.5rem] border-[#1E293B]/5 shadow-sm">
+                <CardContent className="p-10">
+                  <div className="flex items-center gap-3 mb-8">
+                    <motion.div
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="w-2 h-2 bg-blue-500 rounded-full shadow-lg shadow-blue-500/50"
+                    />
+                    <h4 className="text-sm font-black text-[#1E293B]/30 uppercase tracking-[0.25em]">
+                      정확도 안내 및 레퍼런스
+                    </h4>
+                  </div>
+                  <div className="grid md:grid-cols-2 gap-10 text-base text-[#1E293B]/50 leading-relaxed font-semibold">
+                    <p>
+                      인포마우스의 모든 데이터와 계산 도구는 국가법령정보센터 및 유관
+                      기관의 최신 고시 사항을 정기적으로 모니터링하여 정밀하게
+                      반영합니다.
+                    </p>
+                    <p>
+                      산출된 결과값은 참고용 시뮬레이션이며, 실제 행정 처리 시에는
+                      담당 기관이나 전문가의 확인을 거치시는 것을 권장드립니다.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </Container>
+        </main>
+
+        <Footer />
+      </div>
+    </>
   );
 }
