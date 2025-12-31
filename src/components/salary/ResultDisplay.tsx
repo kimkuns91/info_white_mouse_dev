@@ -9,12 +9,14 @@ import {
   Tooltip,
 } from "recharts";
 import { TaxBreakdown } from "@/types";
+import { TaxYear } from "@/constants";
 import { formatCurrency } from "@/utils/calculator";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface Props {
   data: TaxBreakdown;
+  year?: TaxYear;
 }
 
 const AnimatedNumber = ({ value }: { value: string }) => {
@@ -33,7 +35,7 @@ const AnimatedNumber = ({ value }: { value: string }) => {
   );
 };
 
-const ResultDisplay: React.FC<Props> = ({ data }) => {
+const ResultDisplay: React.FC<Props> = ({ data, year = 2026 }) => {
   const chartData = [
     { name: "실수령액", value: data.netPay, color: "#1E293B" },
     { name: "공제합계", value: data.totalDeductions, color: "#E2E8F0" },
@@ -52,7 +54,7 @@ const ResultDisplay: React.FC<Props> = ({ data }) => {
             <div className="md:col-span-3 space-y-10">
               <div>
                 <span className="text-base font-bold text-text/50 uppercase tracking-widest block mb-3">
-                  월 예상 실수령액
+                  {year}년 월 예상 실수령액
                 </span>
                 <motion.h3
                   key={data.netPay}

@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { calculateSalary } from "@/utils/calculator";
+import { TaxYear, DEFAULT_YEAR } from "@/constants";
+import { YearToggle } from "@/components/ui/YearToggle";
 import { Card, CardContent } from "@/components/ui/card";
 
 interface SalaryRow {
@@ -26,7 +29,7 @@ const formatWon = (num: number): string => {
   return `${formatNumber(num)}원`;
 };
 
-const generateSalaryData = (startAmount: number, endAmount: number): SalaryRow[] => {
+const generateSalaryData = (startAmount: number, endAmount: number, year: TaxYear): SalaryRow[] => {
   const data: SalaryRow[] = [];
   for (let annual = startAmount; annual <= endAmount; annual += 1000000) {
     const result = calculateSalary({
@@ -35,7 +38,8 @@ const generateSalaryData = (startAmount: number, endAmount: number): SalaryRow[]
       nonTaxable: 0,
       dependents: 1,
       childrenUnder20: 0,
-    });
+      children8to20: 0,
+    }, year);
     data.push({
       annual,
       monthly: annual / 12,
@@ -68,13 +72,15 @@ const AccordionItem = ({
   isOpen,
   onToggle,
   index,
+  year,
 }: {
   range: (typeof salaryRanges)[0];
   isOpen: boolean;
   onToggle: () => void;
   index: number;
+  year: TaxYear;
 }) => {
-  const data = isOpen ? generateSalaryData(range.start, range.end) : [];
+  const data = isOpen ? generateSalaryData(range.start, range.end, year) : [];
 
   return (
     <motion.div
@@ -209,7 +215,28 @@ const AccordionItem = ({
 };
 
 export default function SalaryTable() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  // URL에서 연도 파라미터 읽기
+  const yearParam = searchParams.get("year");
+  const initialYear: TaxYear = yearParam === "2025" ? 2025 : DEFAULT_YEAR;
+
+  const [year, setYear] = useState<TaxYear>(initialYear);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const handleYearChange = (newYear: TaxYear) => {
+    setYear(newYear);
+    // URL 쿼리 파라미터 업데이트
+    const params = new URLSearchParams(searchParams.toString());
+    if (newYear === DEFAULT_YEAR) {
+      params.delete("year");
+    } else {
+      params.set("year", newYear.toString());
+    }
+    const newUrl = params.toString() ? `?${params.toString()}` : "";
+    router.replace(`/salary-table${newUrl}`, { scroll: false });
+  };
 
   const handleToggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -217,6 +244,16 @@ export default function SalaryTable() {
 
   return (
     <div className="space-y-8">
+      {/* 연도 선택 토글 */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="flex justify-end"
+      >
+        <YearToggle year={year} onChange={handleYearChange} />
+      </motion.div>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -252,11 +289,11 @@ export default function SalaryTable() {
                   transition={{ duration: 0.3, delay: 0.3 }}
                   className="font-bold text-text"
                 >
-                  계산 기준 안내
+                  {year}년 계산 기준 안내
                 </motion.h3>
                 <ul className="text-sm text-text/60 space-y-1">
                   {[
-                    "2026년 4대보험 요율 및 근로소득세 기준 적용",
+                    `${year}년 4대보험 요율 및 근로소득세 기준 적용`,
                     "부양가족 1인(본인) 기준, 비과세 수당 미적용",
                     "실제 실수령액은 개인 상황에 따라 다를 수 있습니다",
                   ].map((text, i) => (
@@ -284,6 +321,7 @@ export default function SalaryTable() {
             isOpen={openIndex === index}
             onToggle={() => handleToggle(index)}
             index={index}
+            year={year}
           />
         ))}
       </div>
