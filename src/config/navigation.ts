@@ -14,7 +14,12 @@ export const mainNav: NavItem[] = [
   {
     title: "연봉 계산기",
     href: "/salary",
-    description: "2025년 기준 실수령액을 계산해보세요",
+    description: "2026년 기준 실수령액을 계산해보세요",
+  },
+  {
+    title: "연봉 실수령액 표",
+    href: "/salary-table",
+    description: "연봉별 실수령액을 한눈에 확인",
   },
   {
     title: "퇴직금 계산기",

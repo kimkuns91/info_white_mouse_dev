@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { calculateSalary } from "@/utils/calculator";
 import { Card, CardContent } from "@/components/ui/card";
@@ -55,7 +55,12 @@ const salaryRanges = [
   { start: 70000000, end: 79000000, label: "7,000만원 ~ 7,900만원" },
   { start: 80000000, end: 89000000, label: "8,000만원 ~ 8,900만원" },
   { start: 90000000, end: 99000000, label: "9,000만원 ~ 9,900만원" },
-  { start: 100000000, end: 120000000, label: "1억원 ~ 1억 2,000만원" },
+  { start: 100000000, end: 109000000, label: "1억원 ~ 1억 900만원" },
+  { start: 110000000, end: 119000000, label: "1억 1,000만원 ~ 1억 1,900만원" },
+  { start: 120000000, end: 129000000, label: "1억 2,000만원 ~ 1억 2,900만원" },
+  { start: 130000000, end: 139000000, label: "1억 3,000만원 ~ 1억 3,900만원" },
+  { start: 140000000, end: 149000000, label: "1억 4,000만원 ~ 1억 4,900만원" },
+  { start: 150000000, end: 159000000, label: "1억 5,000만원 ~ 1억 5,900만원" },
 ];
 
 const AccordionItem = ({
@@ -77,10 +82,10 @@ const AccordionItem = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: index * 0.05 }}
     >
-      <Card className="rounded-2xl border-text/5 overflow-hidden">
+      <Card className="rounded-2xl border-text/5 overflow-hidden hover:shadow-md hover:border-text/10 transition-all">
         <button
           onClick={onToggle}
-          className="w-full px-6 py-5 flex items-center justify-between bg-white hover:bg-surface/50 transition-colors cursor-pointer"
+          className="w-full px-6 py-5 flex items-center justify-between bg-white hover:bg-surface/30 transition-colors cursor-pointer"
         >
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 rounded-xl bg-surface flex items-center justify-center">
@@ -95,21 +100,21 @@ const AccordionItem = ({
             transition={{ duration: 0.2 }}
             className="w-8 h-8 rounded-lg bg-surface flex items-center justify-center"
           >
-            <svg
-              className="w-4 h-4 text-text/60"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2.5}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </motion.div>
-        </button>
+              <svg
+                className="w-4 h-4 text-text/60"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </motion.div>
+          </button>
 
         <AnimatePresence>
           {isOpen && (
@@ -212,35 +217,64 @@ export default function SalaryTable() {
 
   return (
     <div className="space-y-8">
-      <Card className="rounded-[2rem] border-text/5 shadow-sm">
-        <CardContent className="p-8">
-          <div className="flex items-start gap-4">
-            <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
-              <svg
-                className="w-5 h-5 text-blue-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+      >
+        <Card className="rounded-[2rem] border-text/5 shadow-sm">
+          <CardContent className="p-8">
+            <div className="flex items-start gap-4">
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.2 }}
+                className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+                <svg
+                  className="w-5 h-5 text-blue-600"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </motion.div>
+              <div className="space-y-2">
+                <motion.h3
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.3 }}
+                  className="font-bold text-text"
+                >
+                  계산 기준 안내
+                </motion.h3>
+                <ul className="text-sm text-text/60 space-y-1">
+                  {[
+                    "2026년 4대보험 요율 및 근로소득세 기준 적용",
+                    "부양가족 1인(본인) 기준, 비과세 수당 미적용",
+                    "실제 실수령액은 개인 상황에 따라 다를 수 있습니다",
+                  ].map((text, i) => (
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: 0.4 + i * 0.1 }}
+                    >
+                      • {text}
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <div className="space-y-2">
-              <h3 className="font-bold text-text">계산 기준 안내</h3>
-              <ul className="text-sm text-text/60 space-y-1">
-                <li>• 2026년 4대보험 요율 및 근로소득세 기준 적용</li>
-                <li>• 부양가족 1인(본인) 기준, 비과세 수당 미적용</li>
-                <li>• 실제 실수령액은 개인 상황에 따라 다를 수 있습니다</li>
-              </ul>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </motion.div>
 
       <div className="space-y-3">
         {salaryRanges.map((range, index) => (

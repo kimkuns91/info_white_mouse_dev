@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
+import Link from "next/link";
 import { SalaryInput } from "@/types";
 import { calculateSalary } from "@/utils/calculator";
 import CalculatorInput from "./CalculatorInput";
@@ -43,6 +44,62 @@ const SalaryCalculator: React.FC = () => {
         className="lg:col-span-8 space-y-10"
       >
         <ResultDisplay data={breakdown} />
+
+        {/* 연봉 실수령액 표 링크 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.35 }}
+        >
+          <Link href="/salary-table">
+            <Card className="rounded-[2.5rem] border-text/5 shadow-sm hover:shadow-lg hover:border-text/10 transition-all cursor-pointer group">
+              <CardContent className="p-8">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-2xl bg-surface flex items-center justify-center group-hover:bg-text/5 transition-colors">
+                      <svg
+                        className="w-6 h-6 text-text/60"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-text">
+                        2026 연봉 실수령액 표
+                      </h4>
+                      <p className="text-sm text-text/50 font-medium">
+                        1,000만원 ~ 1억원까지 연봉별 실수령액을 한눈에 확인
+                      </p>
+                    </div>
+                  </div>
+                  <div className="w-10 h-10 rounded-xl bg-text/5 flex items-center justify-center group-hover:bg-text group-hover:text-white transition-all">
+                    <svg
+                      className="w-5 h-5 text-text/40 group-hover:text-white transition-colors"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
