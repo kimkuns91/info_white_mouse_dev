@@ -2,11 +2,15 @@ export const siteConfig = {
   name: "인포마우스",
   nameEn: "InfoMouse",
   description: "어려운 정보도 쉽고 빠르게, 인포마우스가 답을 찾아드립니다",
-  url: "https://infomouse.co.kr",
-  ogImage: "https://infomouse.co.kr/og-image.png",
+  url: "https://info.whitemouse.dev",
+  ogImage: "https://info.whitemouse.dev/og-image.png",
   author: {
-    name: "InfoMouse Team",
-    url: "https://infomouse.co.kr",
+    name: "WhiteMouseDev",
+    url: "https://info.whitemouse.dev",
+  },
+  business: {
+    registrationNumber: "634-26-01985",
+    email: "whitemousedev@gmail.com",
   },
   keywords: [
     "연봉 계산기",
@@ -18,9 +22,7 @@ export const siteConfig = {
     "급여 계산",
     "인포마우스",
   ],
-  links: {
-    github: "https://github.com/infomouse",
-  },
+  links: {},
   creator: "InfoMouse",
   themeColor: "#1E293B",
   locale: "ko_KR",

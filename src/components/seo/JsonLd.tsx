@@ -11,13 +11,15 @@ export function OrganizationJsonLd({
   url = siteConfig.url,
   logo = `${siteConfig.url}/logo.png`,
 }: OrganizationJsonLdProps = {}) {
+  const sameAs = Object.values(siteConfig.links).filter(Boolean);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name,
     url,
     logo,
-    sameAs: [siteConfig.links.github],
+    ...(sameAs.length > 0 && { sameAs }),
   };
 
   return (

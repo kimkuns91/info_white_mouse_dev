@@ -65,6 +65,16 @@ export function SideAd({ position }: SideAdProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleClick = () => {
+    fetch("/api/banner/click", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ bannerId: position }),
+    }).catch(() => {
+      // 실패해도 링크 이동은 진행 (fire-and-forget)
+    });
+  };
+
   // 자사 광고 렌더링
   if (adConfig.type === "custom") {
     const currentAd = adConfig.custom[position];
@@ -87,6 +97,7 @@ export function SideAd({ position }: SideAdProps) {
           target="_blank"
           rel="noopener noreferrer"
           className="block"
+          onClick={handleClick}
         >
           <div className="w-[160px] bg-white rounded-2xl shadow-lg border border-text/5 overflow-hidden hover:shadow-xl transition-shadow">
             {hasImage ? (
