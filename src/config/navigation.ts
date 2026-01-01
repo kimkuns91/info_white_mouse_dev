@@ -53,11 +53,5 @@ export const footerNav = {
       href: "/privacy",
     },
   ],
-  social: [
-    {
-      title: "GitHub",
-      href: "https://github.com/infomouse",
-      external: true,
-    },
-  ],
+  social: [],
 };

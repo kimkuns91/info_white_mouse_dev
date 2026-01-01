@@ -76,9 +76,15 @@ export function Footer() {
 
         {/* Bottom */}
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-white/40 font-medium">
-            &copy; {currentYear} {siteConfig.name}. All rights reserved.
-          </p>
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+            <p className="text-sm text-white/40 font-medium">
+              &copy; {currentYear} {siteConfig.name}. All rights reserved.
+            </p>
+            <span className="hidden md:inline text-white/20">|</span>
+            <p className="text-sm text-white/40 font-medium">
+              사업자등록번호: {siteConfig.business.registrationNumber}
+            </p>
+          </div>
           <p className="text-sm text-white/40 font-medium">
             정확한 정보는 관할 기관에 문의하시기 바랍니다.
           </p>
