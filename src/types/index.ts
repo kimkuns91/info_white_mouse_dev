@@ -30,3 +30,16 @@ export interface ChartData {
   value: number;
   color: string;
 }
+
+export interface CarInfo {
+  name: string;
+  priceRange: string;
+  monthlyPayment: string;
+  reason: string;
+}
+
+export interface CarRecommendation {
+  category: string;
+  cars: CarInfo[];
+  tip: string;
+}

@@ -8,7 +8,7 @@ import { TaxYear, DEFAULT_YEAR } from "@/constants";
 import { calculateSalary } from "@/utils/calculator";
 import CalculatorInput from "./CalculatorInput";
 import ResultDisplay from "./ResultDisplay";
-import AIAdvisor from "./AIAdvisor";
+// import AIAdvisor from "./AIAdvisor";
 import { YearToggle } from "@/components/ui/YearToggle";
 import { Card, CardContent } from "@/components/ui/card";
 import { Container } from "@/components/layout/Container";
@@ -113,9 +113,47 @@ const SalaryCalculator: React.FC = () => {
               <section>
                 <CalculatorInput input={input} onChange={setInput} />
               </section>
-              {/* AI Advisor - 데스크탑에서만 입력폼 아래 표시 */}
+              {/* 차량 추천 CTA - 데스크탑에서만 입력폼 아래 표시 */}
               <div className="hidden lg:block">
-                <AIAdvisor breakdown={breakdown} />
+                <Link
+                  href={`/car?salary=${input.isMonthly ? input.amount * 12 : input.amount}`}
+                >
+                  <Card className="rounded-[2.5rem] border-text/5 shadow-sm hover:shadow-lg hover:border-text/10 transition-all cursor-pointer group bg-linear-to-br from-blue-600 to-blue-700">
+                    <CardContent className="p-8">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                          <svg
+                            className="w-6 h-6 text-white"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
+                            />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-bold text-white">
+                            차량 구매를 원하시나요?
+                          </h4>
+                          <p className="text-sm text-white/70 font-medium">
+                            내 연봉에 맞는 차량 보기
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
               </div>
             </motion.div>
 
@@ -128,9 +166,47 @@ const SalaryCalculator: React.FC = () => {
             >
               <ResultDisplay data={breakdown} year={year} />
 
-              {/* AI Advisor - 모바일에서는 결과 바로 아래 표시 */}
+              {/* 차량 추천 CTA - 모바일에서는 결과 바로 아래 표시 */}
               <div className="lg:hidden">
-                <AIAdvisor breakdown={breakdown} />
+                <Link
+                  href={`/car?salary=${input.isMonthly ? input.amount * 12 : input.amount}`}
+                >
+                  <Card className="rounded-[2.5rem] border-text/5 shadow-sm hover:shadow-lg hover:border-text/10 transition-all cursor-pointer group bg-linear-to-br from-blue-600 to-blue-700">
+                    <CardContent className="p-8">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                          <svg
+                            className="w-6 h-6 text-white"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
+                            />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-bold text-white">
+                            차량 구매를 원하시나요?
+                          </h4>
+                          <p className="text-sm text-white/70 font-medium">
+                            내 연봉에 맞는 차량 보기
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
               </div>
 
               {/* 연봉 실수령액 표 링크 */}

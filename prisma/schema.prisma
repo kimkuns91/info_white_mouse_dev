@@ -1,0 +1,23 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// 차량 추천 로그
+model CarRecommendationLog {
+  id              String   @id @default(cuid())
+  annualSalary    Int      // 입력한 연봉
+  recommendations Json     // AI 추천 결과 (전체 JSON)
+  userAgent       String?  // 브라우저 정보
+  createdAt       DateTime @default(now())
+
+  @@index([annualSalary])
+  @@index([createdAt])
+  @@map("car_recommendation_logs")
+}

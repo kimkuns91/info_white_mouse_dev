@@ -2,13 +2,15 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { siteConfig } from "@/config/site";
 import { mainNav } from "@/config/navigation";
 import { LogoIcon, SearchIcon, MenuIcon } from "@/components/icons";
 import { useState } from "react";
+import { SearchModal } from "@/components/search/SearchModal";
+import { useSearchModal } from "@/hooks/useSearchModal";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { isOpen: isSearchOpen, open: openSearch, close: closeSearch } = useSearchModal();
 
   return (
     <motion.header
@@ -61,11 +63,15 @@ export function Header() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={openSearch}
             className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-text/5 hover:bg-text/10 transition-colors"
             aria-label="검색"
           >
             <SearchIcon className="w-4 h-4 text-text/60" />
             <span className="text-sm font-semibold text-text/60">검색</span>
+            <kbd className="ml-1 px-1.5 py-0.5 text-xs font-semibold text-text/40 bg-text/10 rounded">
+              ⌘K
+            </kbd>
           </motion.button>
 
           {/* Mobile Menu Button */}
@@ -89,6 +95,17 @@ export function Header() {
           className="md:hidden border-t border-text/5 bg-surface"
         >
           <nav className="flex flex-col p-4 gap-2">
+            {/* Mobile Search Button */}
+            <button
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                openSearch();
+              }}
+              className="px-4 py-3 rounded-xl text-base font-bold text-text/60 hover:text-text hover:bg-text/5 transition-colors flex items-center gap-2"
+            >
+              <SearchIcon className="w-4 h-4" />
+              검색
+            </button>
             {mainNav.map((item) => (
               <Link
                 key={item.href}
@@ -110,6 +127,9 @@ export function Header() {
           </nav>
         </motion.div>
       )}
+
+      {/* Search Modal */}
+      <SearchModal isOpen={isSearchOpen} onClose={closeSearch} />
     </motion.header>
   );
 }
