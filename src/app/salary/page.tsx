@@ -10,14 +10,14 @@ export default function SalaryPage() {
   return (
     <>
       <WebApplicationJsonLd
-        name="연봉 계산기 - 실수령액 계산"
-        description="최신 4대보험 요율과 근로소득세 기준으로 연봉/월급의 실수령액을 정확하게 계산합니다."
+        name="2026 연봉 실수령액 계산기"
+        description="2026년 확정 4대보험 요율 100% 반영! 연봉/월급 입력하면 실수령액을 바로 계산합니다."
         url={`${siteConfig.url}/salary`}
       />
       <BreadcrumbJsonLd
         items={[
           { name: "홈", url: siteConfig.url },
-          { name: "연봉 계산기", url: `${siteConfig.url}/salary` },
+          { name: "연봉 실수령액 계산기", url: `${siteConfig.url}/salary` },
         ]}
       />
 

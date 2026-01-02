@@ -79,11 +79,11 @@ const SalaryCalculator: React.FC = () => {
                 transition={{ duration: 0.2 }}
                 className="text-4xl md:text-5xl font-black text-text tracking-tight mb-4"
               >
-                {year} 연봉 계산기
+                {year} 연봉 실수령액 계산기
               </motion.h1>
             </AnimatePresence>
             <p className="text-xl text-text/60 font-semibold leading-relaxed">
-              {year}년 최신 4대보험 요율과 세금을 반영한 정확한 월 실수령액을
+              {year}년 확정 4대보험 요율 100% 반영! 내 월급 실수령액을 정확하게
               계산합니다.
             </p>
           </motion.div>

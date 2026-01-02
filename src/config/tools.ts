@@ -11,8 +11,8 @@ export interface Tool {
 export const tools: Tool[] = [
   {
     id: "salary",
-    title: "연봉 계산기",
-    description: "2025년 4대보험 및 세금 기준, 연봉/월급 입력으로 실수령액을 정확하게 계산합니다.",
+    title: "연봉 실수령액 계산기",
+    description: "2026년 4대보험 최신 요율 반영! 연봉/월급 입력으로 실수령액을 정확하게 계산합니다.",
     href: "/salary",
     icon: "calculator",
     status: "active",
