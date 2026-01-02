@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(yarn build:*)",
+      "Bash(yarn install)",
+      "Bash(grep:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nrefactor: 레이아웃 구조 개선 및 색상 변수화\n\n- LayoutProvider 컴포넌트 추가로 Header/Footer 공통화\n- CSS 변수로 색상 관리 \\(--surface, --text\\)\n- 반응형 레이아웃 패딩 설정 \\(모바일/데스크톱\\)\n- Google/Naver 검색엔진 인증 메타 태그 추가\n- CLAUDE.md에 yarn 패키지 매니저 규칙 추가\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)",
+      "Bash(git commit:*)",
+      "Bash(npx tsc:*)",
+      "Bash(yarn add:*)",
+      "Bash(npx prisma:*)",
+      "Bash(npm show:*)",
+      "Bash(cat:*)"
+    ]
+  }
+}
