@@ -22,6 +22,11 @@ export const mainNav: NavItem[] = [
     description: "연봉별 실수령액을 한눈에 확인",
   },
   {
+    title: "중소기업 소득세 감면",
+    href: "/sme-tax-reduction",
+    description: "중소기업 취업자 소득세 감면 혜택 확인",
+  },
+  {
     title: "퇴직금 계산기",
     href: "/severance",
     description: "퇴직금을 미리 계산해보세요",

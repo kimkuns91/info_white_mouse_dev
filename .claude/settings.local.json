@@ -12,7 +12,9 @@
       "Bash(yarn add:*)",
       "Bash(npx prisma:*)",
       "Bash(npm show:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(git rebase:*)",
+      "Bash(GIT_EDITOR=true git rebase:*)"
     ]
   }
 }

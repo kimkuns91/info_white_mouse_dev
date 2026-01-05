@@ -3,7 +3,7 @@ export interface Tool {
   title: string;
   description: string;
   href: string;
-  icon: "calculator" | "calendar" | "briefcase" | "wallet";
+  icon: "calculator" | "calendar" | "briefcase" | "wallet" | "document";
   status: "active" | "coming-soon";
   features?: string[];
 }
@@ -17,6 +17,15 @@ export const tools: Tool[] = [
     icon: "calculator",
     status: "active",
     features: ["국민연금", "건강보험", "고용보험", "근로소득세"],
+  },
+  {
+    id: "sme-tax-reduction",
+    title: "중소기업 소득세 감면",
+    description: "중소기업 취업 청년·고령자·장애인·경력단절여성을 위한 소득세 감면 혜택을 확인하세요.",
+    href: "/sme-tax-reduction",
+    icon: "document",
+    status: "active",
+    features: ["감면 기간 계산", "신청서 다운로드", "자격 확인"],
   },
   {
     id: "severance",
